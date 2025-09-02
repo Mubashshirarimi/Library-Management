@@ -1,0 +1,146 @@
+/* SignupPage.css - cleaned and matched to Login card style */
+.signup-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(180deg, #fff0f6 0%, #ffeef8 100%);
+  padding: 2rem;
+}
+
+.signup-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+/* The visible card that matches the login form */
+.signup-inner {
+  background-color: #fff7fb;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(58,7,18,0.06);
+  width: 100%;
+  max-width: 420px; /* match login */
+  margin: 0 auto;
+  border: 1px solid rgba(58,7,18,0.06);
+}
+
+/* Simplified header inside the card */
+.signup-header {
+  color: #2b0b1a;
+  padding-bottom: 8px;
+  text-align: center;
+}
+
+.signup-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.signup-subtitle {
+  font-size: 0.95rem;
+  opacity: 0.95;
+}
+
+.signup-form {
+  padding-top: 8px;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.form-input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid rgba(43,11,24,0.06);
+  border-radius: 8px;
+  font-size: 16px;
+  background: white;
+  transition: border-color 0.3s;
+}
+
+.form-input:focus {
+  border-color: #7b2550;
+  outline: none;
+}
+
+.form-select {
+  appearance: none;
+  width: 100%;
+  padding: 12px;
+  border: 1px solid rgba(43,11,24,0.06);
+  border-radius: 8px;
+  font-size: 16px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%239C27B0' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 1em;
+}
+
+.form-select:focus {
+  border-color: #9C27B0;
+  outline: none;
+}
+
+.signup-button {
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(90deg, #4b0b1a, #3a0712);
+  color: #fff0f6;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.signup-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(106, 27, 154, 0.4);
+}
+
+.error-message {
+  color: #d32f2f;
+  font-size: 0.9rem;
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.login-link {
+  text-align: center;
+  margin-top: 1.5rem;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.login-link a {
+  color: #7b2550;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.login-link a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive: make the card edge-to-edge on small screens */
+@media screen and (max-width: 600px) {
+  .signup-inner {
+    max-width: 100%;
+    border-radius: 8px;
+    padding: 20px;
+  }
+}

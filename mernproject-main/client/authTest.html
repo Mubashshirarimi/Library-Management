@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Authentication Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .container {
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 5px;
+        }
+        button {
+            padding: 8px 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 10px;
+            margin-top: 10px;
+        }
+        input {
+            padding: 8px;
+            margin-bottom: 10px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f5f5f5;
+            border-radius: 4px;
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+    <h1>Authentication Test Tool</h1>
+    
+    <div class="container">
+        <h2>Login</h2>
+        <div>
+            <label>Email:</label>
+            <input type="email" id="email" value="hoho@example.com" />
+        </div>
+        <div>
+            <label>Password:</label>
+            <input type="password" id="password" value="password123" />
+        </div>
+        <button onclick="login()">Login</button>
+        <div id="loginResult" class="result"></div>
+    </div>
+
+    <div class="container">
+        <h2>Verify Token</h2>
+        <div>
+            <label>Current Token:</label>
+            <div id="currentToken" style="word-break: break-all; margin-bottom: 10px;"></div>
+        </div>
+        <button onclick="testAuth()">Test Authentication</button>
+        <button onclick="decodeToken()">Decode Token</button>
+        <button onclick="clearToken()">Clear Token</button>
+        <div id="authResult" class="result"></div>
+    </div>
+
+    <script>
+        // Update token display on load
+        document.addEventListener('DOMContentLoaded', function() {
+            updateTokenDisplay();
+        });
+
+        // Login function
+        async function login() {
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const resultDiv = document.getElementById('loginResult');
+
+            resultDiv.innerHTML = "Logging in...";
+            
+            try {
+                const response = await fetch('/api/auth/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ email, password })
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    resultDiv.innerHTML = `Login successful!\nResponse: ${JSON.stringify(data, null, 2)}`;
+                    
+                    // Save token to localStorage
+                    if (data.token) {
+                        localStorage.setItem('token', data.token);
+                        updateTokenDisplay();
+                    } else {
+                        resultDiv.innerHTML += "\n\nWARNING: No token received!";
+                    }
+                } else {
+                    resultDiv.innerHTML = `Login failed: ${data.message}\nResponse: ${JSON.stringify(data, null, 2)}`;
+                }
+            } catch (error) {
+                resultDiv.innerHTML = `Error: ${error.message}`;
+                console.error('Login error:', error);
+            }
+        }
+
+        // Test authentication
+        async function testAuth() {
+            const token = localStorage.getItem('token');
+            const resultDiv = document.getElementById('authResult');
+
+            resultDiv.innerHTML = "Testing authentication...";
+            
+            if (!token) {
+                resultDiv.innerHTML = "No token found in localStorage";
+                return;
+            }
+            
+            try {
+                const response = await fetch('/api/auth/test', {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    resultDiv.innerHTML = `Authentication successful!\nUser: ${JSON.stringify(data, null, 2)}`;
+                } else {
+                    resultDiv.innerHTML = `Authentication failed: ${data.message}\nResponse: ${JSON.stringify(data, null, 2)}`;
+                }
+            } catch (error) {
+                resultDiv.innerHTML = `Error: ${error.message}`;
+                console.error('Auth test error:', error);
+            }
+        }
+
+        // Decode JWT token
+        function decodeToken() {
+            const token = localStorage.getItem('token');
+            const resultDiv = document.getElementById('authResult');
+
+            if (!token) {
+                resultDiv.innerHTML = "No token found in localStorage";
+                return;
+            }
+
+            try {
+                // Parse the token parts
+                const parts = token.split('.');
+                if (parts.length !== 3) {
+                    resultDiv.innerHTML = "Invalid token format";
+                    return;
+                }
+
+                // Decode the payload (middle part)
+                const payload = JSON.parse(atob(parts[1]));
+                
+                // Calculate expiration time
+                let expirationMsg = "";
+                if (payload.exp) {
+                    const expDate = new Date(payload.exp * 1000);
+                    const now = new Date();
+                    expirationMsg = `\n\nExpires: ${expDate.toLocaleString()}\nExpired: ${expDate < now ? 'YES' : 'NO'}`;
+                }
+
+                resultDiv.innerHTML = `Token decoded:\n${JSON.stringify(payload, null, 2)}${expirationMsg}`;
+            } catch (error) {
+                resultDiv.innerHTML = `Error decoding token: ${error.message}`;
+                console.error('Token decode error:', error);
+            }
+        }
+
+        // Clear token from localStorage
+        function clearToken() {
+            localStorage.removeItem('token');
+            updateTokenDisplay();
+            document.getElementById('authResult').innerHTML = "Token cleared from localStorage";
+        }
+
+        // Update token display
+        function updateTokenDisplay() {
+            const token = localStorage.getItem('token');
+            const tokenDiv = document.getElementById('currentToken');
+            
+            if (token) {
+                tokenDiv.innerHTML = `<strong>Token found:</strong> ${token.substring(0, 20)}...`;
+            } else {
+                tokenDiv.innerHTML = "<em>No token in localStorage</em>";
+            }
+        }
+    </script>
+</body>
+</html>

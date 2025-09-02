@@ -1,0 +1,89 @@
+nohup: ignoring input
+
+> client@1.0.0 start
+> node server.js
+
+[dotenv@17.2.1] injecting env (3) from .env -- tip: ⚙️  override existing env vars with { override: true }
+Server starting...
+MONGO_URI: mongodb+srv://mubashshiramuba888:Test1234@cluster0.scpasip.mongodb.net/libDB?retryWrites=true&w=majority
+(node:37108) [MONGOOSE] Warning: Duplicate schema index on {"email":1} found. This is often due to declaring an index using both "index: true" and "schema.index()". Please remove the duplicate index definition.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+╔════════════════════════════════════════════╗
+║ 🚀 Server running on port 5000              ║
+║ API: http://localhost:5000                  ║
+║ Environment: development                   ║
+╚════════════════════════════════════════════╝
+  
+✅ MongoDB connected successfully!
+[0;36mMongoose:[0m reviews.createIndex({ book: [33m1[39m }, { background: [33mtrue[39m })
+[0;36mMongoose:[0m users.createIndex({ email: [33m1[39m }, { unique: [33mtrue[39m, background: [33mtrue[39m })
+[0;36mMongoose:[0m users.createIndex({ email: [33m1[39m }, { background: [33mtrue[39m })
+Getting all books
+[0;36mMongoose:[0m books.find({}, {})
+[0;36mMongoose:[0m reviews.find({ book: ObjectId("68b5b974094e240ffd40003f") }, {})
+[0;36mMongoose:[0m users.findOne({ email: [32m'reviewer@example.com'[39m }, {})
+[0;36mMongoose:[0m users.insertOne({ name: [32m'Review Tester'[39m, email: [32m'reviewer@example.com'[39m, password: [32m'$2b$10$sai4yryd78ciAsRqyeLQcOelX8/IOyNFP2v8n/rr9twBjWDDaZSwe'[39m, role: [32m'user'[39m, profilePicture: [32m''[39m, borrowedBooks: [], isActive: [33mtrue[39m, _id: ObjectId("68b6f0d4d696df46e4ae651c"), createdAt: new Date("Tue, 02 Sep 2025 13:27:48 GMT"), updatedAt: new Date("Tue, 02 Sep 2025 13:27:48 GMT"), __v: [33m0[39m}, {})
+Verifying token with secret: Mub...
+Token successfully decoded: {
+  userId: '68b6f0d4d696df46e4ae651c',
+  email: 'reviewer@example.com',
+  role: 'user',
+  iat: 1756819668,
+  exp: 1756906068
+}
+[0;36mMongoose:[0m books.findOne({ _id: ObjectId("68b5b974094e240ffd40003f") }, {})
+[0;36mMongoose:[0m users.findOne({ _id: ObjectId("68b6f0d4d696df46e4ae651c") }, { projection: { name: [33m1[39m } })
+[0;36mMongoose:[0m reviews.insertOne({ book: ObjectId("68b5b974094e240ffd40003f"), user: ObjectId("68b6f0d4d696df46e4ae651c"), rating: [33m5[39m, comment: [32m'Excellent book, very practical.'[39m, reviewerName: [32m'Review Tester'[39m, _id: ObjectId("68b6f106d696df46e4ae6520"), createdAt: new Date("Tue, 02 Sep 2025 13:28:38 GMT"), updatedAt: new Date("Tue, 02 Sep 2025 13:28:38 GMT"), __v: [33m0[39m}, {})
+[0;36mMongoose:[0m reviews.findOne({ _id: ObjectId("68b6f106d696df46e4ae6520") }, {})
+[0;36mMongoose:[0m users.find({ _id: { [32m'$in'[39m: [ ObjectId("68b6f0d4d696df46e4ae651c") ] } }, { skip: [90mundefined[39m, limit: [90mundefined[39m, perDocumentLimit: [90mundefined[39m, projection: { name: [33m1[39m }})
+[0;36mMongoose:[0m reviews.find({ book: ObjectId("68b5b974094e240ffd40003f") }, {})
+[0;36mMongoose:[0m users.find({ _id: { [32m'$in'[39m: [ ObjectId("68b6f0d4d696df46e4ae651c") ] } }, { skip: [90mundefined[39m, limit: [90mundefined[39m, perDocumentLimit: [90mundefined[39m, projection: { name: [33m1[39m }})
+Getting all books
+[0;36mMongoose:[0m books.find({}, {})
+Getting all books
+[0;36mMongoose:[0m books.find({}, {})
+Getting all books
+[0;36mMongoose:[0m books.find({}, {})
+Getting all books
+[0;36mMongoose:[0m books.find({}, {})
+Getting book with ID: 68b5b974094e240ffd40003f
+[0;36mMongoose:[0m books.findOne({ _id: ObjectId("68b5b974094e240ffd40003f") }, {})
+Getting book with ID: 68b5b974094e240ffd40003f
+[0;36mMongoose:[0m books.findOne({ _id: ObjectId("68b5b974094e240ffd40003f") }, {})
+[0;36mMongoose:[0m reviews.find({ book: ObjectId("68b5b974094e240ffd40003f") }, {})
+[0;36mMongoose:[0m users.find({ _id: { [32m'$in'[39m: [ ObjectId("68b6f0d4d696df46e4ae651c") ] } }, { skip: [90mundefined[39m, limit: [90mundefined[39m, perDocumentLimit: [90mundefined[39m, projection: { name: [33m1[39m }})
+[0;36mMongoose:[0m reviews.find({ book: ObjectId("68b5b974094e240ffd40003f") }, {})
+[0;36mMongoose:[0m users.find({ _id: { [32m'$in'[39m: [ ObjectId("68b6f0d4d696df46e4ae651c") ] } }, { skip: [90mundefined[39m, limit: [90mundefined[39m, perDocumentLimit: [90mundefined[39m, projection: { name: [33m1[39m }})
+Getting all books
+[0;36mMongoose:[0m books.find({}, {})
+Getting all books
+[0;36mMongoose:[0m books.find({}, {})
+Getting book with ID: 68b5b974094e240ffd400041
+[0;36mMongoose:[0m books.findOne({ _id: ObjectId("68b5b974094e240ffd400041") }, {})
+Getting book with ID: 68b5b974094e240ffd400041
+[0;36mMongoose:[0m books.findOne({ _id: ObjectId("68b5b974094e240ffd400041") }, {})
+[0;36mMongoose:[0m reviews.find({ book: ObjectId("68b5b974094e240ffd400041") }, {})
+[0;36mMongoose:[0m reviews.find({ book: ObjectId("68b5b974094e240ffd400041") }, {})
+Getting all books
+[0;36mMongoose:[0m books.find({}, {})
+Getting all books
+[0;36mMongoose:[0m books.find({}, {})
+Getting book with ID: 68b5b974094e240ffd400048
+[0;36mMongoose:[0m books.findOne({ _id: ObjectId("68b5b974094e240ffd400048") }, {})
+[0;36mMongoose:[0m reviews.find({ book: ObjectId("68b5b974094e240ffd400048") }, {})
+Getting book with ID: 68b5b974094e240ffd400048
+[0;36mMongoose:[0m books.findOne({ _id: ObjectId("68b5b974094e240ffd400048") }, {})
+[0;36mMongoose:[0m reviews.find({ book: ObjectId("68b5b974094e240ffd400048") }, {})
+Getting all books
+[0;36mMongoose:[0m books.find({}, {})
+Getting all books
+[0;36mMongoose:[0m books.find({}, {})
+Getting book with ID: 68b5b974094e240ffd40003f
+[0;36mMongoose:[0m books.findOne({ _id: ObjectId("68b5b974094e240ffd40003f") }, {})
+[0;36mMongoose:[0m reviews.find({ book: ObjectId("68b5b974094e240ffd40003f") }, {})
+[0;36mMongoose:[0m users.find({ _id: { [32m'$in'[39m: [ ObjectId("68b6f0d4d696df46e4ae651c") ] } }, { skip: [90mundefined[39m, limit: [90mundefined[39m, perDocumentLimit: [90mundefined[39m, projection: { name: [33m1[39m }})
+Getting book with ID: 68b5b974094e240ffd40003f
+[0;36mMongoose:[0m books.findOne({ _id: ObjectId("68b5b974094e240ffd40003f") }, {})
+[0;36mMongoose:[0m reviews.find({ book: ObjectId("68b5b974094e240ffd40003f") }, {})
+[0;36mMongoose:[0m users.find({ _id: { [32m'$in'[39m: [ ObjectId("68b6f0d4d696df46e4ae651c") ] } }, { skip: [90mundefined[39m, limit: [90mundefined[39m, perDocumentLimit: [90mundefined[39m, projection: { name: [33m1[39m }})

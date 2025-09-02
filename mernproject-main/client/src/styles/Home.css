@@ -1,0 +1,87 @@
+/* src/styles/Home.css */
+.home-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  flex-direction: column;
+  background: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);
+  text-align: center;
+}
+
+.welcome-message {
+  font-size: 48px;
+  font-weight: bold;
+  margin-bottom: 40px;
+  color: white;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.home-options {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* src/styles/Home.css */
+.home-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  flex-direction: column;
+  background: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);
+  text-align: center;
+}
+
+.welcome-message {
+  font-size: 48px;
+  font-weight: bold;
+  margin-bottom: 40px;
+  color: white;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.home-options {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.home-options button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 15px 25px;
+  border: none;
+  width: 250px;
+  margin: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 18px;
+  transition: 0.3s ease;
+}
+
+.home-options button:hover {
+  background-color: #45a049;
+  transform: scale(1.05);
+}
+
+.home-button {
+  background-color: #007BFF;
+  color: white;
+  padding: 15px 25px;
+  border: none;
+  width: 250px;
+  margin: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 18px;
+  transition: 0.3s ease;
+}
+
+.home-button:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}

@@ -1,0 +1,125 @@
+/* AdminPanel.css - styles for admin manage books */
+.manage-books {
+  border: 1px solid rgba(43,11,24,0.06);
+  padding: 1rem;
+}
+
+/* Full width admin tab bar */
+.admin-tabs {
+  display: flex;
+  gap: 0.5rem;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.admin-tab {
+  flex: 1 1 0;
+  text-align: center;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  background: #fff;
+  border: 1px solid rgba(0,0,0,0.04);
+  cursor: pointer;
+  font-weight: 600;
+  color: #4b2a2f;
+  transition: all 160ms ease;
+}
+
+.admin-tab:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(59,7,18,0.04); }
+
+.admin-tab.active {
+  background: linear-gradient(90deg, #7b2550, #6b2533);
+  color: #fff;
+  box-shadow: 0 8px 24px rgba(107,37,51,0.12);
+}
+
+/* Container for tab content */
+.admin-tab-content {
+  width: 100%;
+}
+
+/* Edit panel layout */
+.edit-book-panel {
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+.edit-book-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.form-column { width: 100%; }
+
+.form-actions { grid-column: 1 / -1; display: flex; gap: 1rem; }
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .admin-tabs { flex-direction: column; }
+  .edit-book-form { grid-template-columns: 1fr; }
+}
+
+.manage-books table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.manage-books th {
+  text-align: left;
+  font-weight: 700;
+  padding: 0.75rem;
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+  background: linear-gradient(90deg, rgba(123,37,80,0.04), rgba(75,11,26,0.02));
+}
+
+.manage-books td {
+  padding: 0.75rem;
+  vertical-align: top;
+}
+
+/* Edit form card */
+.manage-books-form {
+  max-width: 720px;
+  margin: 0 auto 1.25rem auto;
+  background: #fff;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 6px 18px rgba(59,7,18,0.04);
+}
+
+.manage-books img {
+  border-radius: 6px;
+  box-shadow: 0 6px 14px rgba(58,7,18,0.06);
+}
+
+/* Constrain cover images so they don't overflow table cells */
+.manage-books td img,
+.manage-books img {
+  width: 64px;
+  height: 90px;
+  object-fit: cover;
+  display: block;
+}
+
+/* Ensure consistent box model and responsive table */
+.manage-books,
+.manage-books * {
+  box-sizing: border-box;
+}
+
+.admin-books-table { width: 100%; overflow-x: auto; }
+.admin-books-table table { width: 100%; border-collapse: collapse; }
+
+.manage-books th,
+.manage-books td { border-bottom: 1px solid rgba(0,0,0,0.04); }
+
+.manage-books .actions button {
+  margin-right: 0.5rem;
+}
+
+.manage-books .empty-state {
+  padding: 2rem;
+  text-align: center;
+  color: #6b2533;
+}

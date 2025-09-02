@@ -1,0 +1,40 @@
+/* LoadingPage styles - baby pink theme */
+.loading-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(180deg, #fff0f6 0%, #ffeef8 100%);
+}
+
+.loading-card {
+  background: linear-gradient(180deg, rgba(75,11,53,0.9), rgba(27,18,39,0.95));
+  color: #fff7fb;
+  padding: 36px 44px;
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(75,11,53,0.35);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.spinner {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  border: 6px solid rgba(255,255,255,0.18);
+  border-top-color: #ffb6d5;
+  animation: spin 1s linear infinite;
+}
+
+.loading-message {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #ffeef8;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}

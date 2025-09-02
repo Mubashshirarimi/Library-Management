@@ -1,0 +1,270 @@
+/* Header.css */
+.header {
+  background-color: transparent;
+  color: #2b0b1a;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.header.scrolled {
+  background-color: rgba(255, 183, 213, 0.95);
+  box-shadow: 0 4px 10px rgba(27, 11, 17, 0.08);
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem;
+  height: 70px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.logo a {
+  display: flex;
+  align-items: center;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #2b0b1a;
+  text-decoration: none;
+  letter-spacing: 0.5px;
+}
+
+.logo-text {
+  margin-right: 8px;
+  color: #2b0b1a;
+}
+
+.logo-icon {
+  font-size: 1.2rem;
+}
+
+.nav-menu ul {
+  display: flex;
+  list-style: none;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-menu li {
+  margin-left: 2rem;
+  position: relative;
+}
+
+.nav-menu li.active::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: #BA68C8;
+  border-radius: 2px;
+}
+
+.nav-menu a {
+  color: #2b0b1a;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  padding: 8px 0;
+}
+
+.nav-menu a:hover {
+  color: #7b2550;
+}
+
+.admin-icon {
+  margin-right: 5px;
+}
+
+.user-menu-item {
+  margin-left: auto;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+}
+
+.welcome-text {
+  margin-right: 12px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #2b0b1a;
+}
+
+/* admin / user name styling */
+.user-name {
+  font-weight: 700;
+  color: #3a0712;
+  background: rgba(255,255,255,0.12);
+  padding: 6px 10px;
+  border-radius: 18px;
+  border: 1px solid rgba(58,7,18,0.06);
+  margin-right: 10px;
+  font-size: 0.95rem;
+}
+
+.auth-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.logout-btn {
+  background-color: transparent;
+  color: white;
+  border: 1px solid white;
+  padding: 6px 15px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+
+.login-btn, .signup-btn {
+  padding: 6px 15px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.login-btn {
+  background-color: transparent;
+  color: #2b0b1a;
+  border: 1px solid rgba(43,11,24,0.08);
+}
+
+.signup-btn {
+  background-color: #7b2550;
+  color: #fff0f6;
+  border: 1px solid #7b2550;
+}
+
+.logout-btn:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+.login-btn:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+.signup-btn:hover {
+  background-color: #9C27B0;
+  transform: translateY(-2px);
+}
+
+.mobile-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 22px;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+.mobile-toggle span {
+  display: block;
+  height: 3px;
+  width: 100%;
+  background-color: #2b0b1a;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+}
+
+/* Mobile responsiveness */
+@media screen and (max-width: 768px) {
+  .mobile-toggle {
+    display: flex;
+  }
+  
+  .mobile-toggle.active span:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+  }
+  
+  .mobile-toggle.active span:nth-child(2) {
+    opacity: 0;
+  }
+  
+  .mobile-toggle.active span:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
+  }
+  
+  .nav-menu {
+    position: fixed;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    height: calc(100vh - 70px);
+    background-color: #6A1B9A;
+    display: flex;
+    flex-direction: column;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
+    box-shadow: 5px 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 999;
+  }
+  
+  .nav-menu.active {
+    transform: translateX(0);
+  }
+  
+  .nav-menu ul {
+    flex-direction: column;
+    width: 100%;
+    padding: 2rem 0;
+    gap: 1.5rem;
+  }
+  
+  .nav-menu li {
+    margin: 0;
+    width: 100%;
+    text-align: center;
+  }
+  
+  .nav-menu li.active::after {
+    width: 50px;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .user-menu-item {
+    margin-top: 1.5rem;
+    margin-left: 0;
+  }
+  
+  .user-info {
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+  }
+  
+  .welcome-text {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+  
+  .auth-buttons {
+    flex-direction: column;
+    gap: 15px;
+    width: 80%;
+    max-width: 200px;
+  }
+  
+  .login-btn, .signup-btn {
+    width: 100%;
+    text-align: center;
+    padding: 10px 0;
+  }
+}

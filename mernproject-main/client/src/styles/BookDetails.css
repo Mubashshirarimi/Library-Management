@@ -1,0 +1,24 @@
+/* BookDetails.css - styles for book detail page and reviews */
+
+.reviews-wrapper { padding: 0 20px; }
+.reviews-card { border-radius: 10px; border: 1px solid rgba(59,7,18,0.04); }
+.reviews-heading { font-size: 1.25rem; font-weight: 700; color: #3a0712; }
+.reviews-list { display: flex; flex-direction: column; gap: 0.75rem; }
+.review-card { background: #fff7fb; padding: 12px; border-radius: 10px; border: 1px solid rgba(123,37,80,0.06); }
+.review-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+.review-author { color: #3a0712; font-weight: 700; }
+.review-date { color: #6b2533; font-size: 0.9rem; }
+.review-rating { color: #4b0b1a; font-weight: 600; margin-bottom: 6px; }
+.review-comment { color: #3a0712; }
+
+.review-form { margin-top: 12px; }
+.review-post-card { background: #fff; padding: 12px; border-radius: 8px; border: 1px solid rgba(59,7,18,0.04); }
+.btn-submit { background: linear-gradient(90deg,#4b0b1a,#3a0712); color: #fff; padding: 8px 12px; border-radius: 8px; border: none; cursor: pointer; }
+.btn-submit:disabled { opacity: 0.6; cursor: not-allowed; }
+
+/* ensure main image and info align nicely */
+.bg-white.p-6.rounded-lg.shadow-lg .md\\:flex img { border-radius: 8px; max-width: 100%; }
+
+@media (max-width: 768px) {
+  .reviews-wrapper { padding: 0 10px; }
+}

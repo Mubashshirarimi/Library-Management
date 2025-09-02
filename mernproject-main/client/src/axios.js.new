@@ -1,0 +1,107 @@
+import axios from 'axios';
+
+/**
+ * Custom axios instance configured for API communication
+ * - Uses the proxy defined in package.json for local development
+ * - Attaches authentication token to all requests
+ * - Provides error handling for common API issues
+ */
+const instance = axios.create({
+  baseURL: '/api',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  timeout: 10000, // 10 second timeout
+});
+
+// Request interceptor - adds auth token to requests
+instance.interceptors.request.use(
+  (config) => {
+    // Get token from localStorage
+    const token = localStorage.getItem('token');
+    
+    // If token exists, add to Authorization header
+    if (token) {
+      config.headers['Authorization'] = `Bearer ${token}`;
+      
+      // Log auth header in development
+      if (process.env.NODE_ENV === 'development') {
+        console.log(`Auth header set: Bearer ${token.substring(0, 15)}...`);
+      }
+    } else {
+      if (process.env.NODE_ENV === 'development') {
+        console.log('No auth token available for request');
+      }
+    }
+    
+    // Log outgoing requests in development
+    if (process.env.NODE_ENV === 'development') {
+      console.log(`🚀 API Request: ${config.method?.toUpperCase()} ${config.baseURL}${config.url}`);
+    }
+    
+    return config;
+  },
+  (error) => {
+    // Log request errors
+    console.error('❌ Request Error:', error);
+    return Promise.reject(error);
+  }
+);
+
+// Response interceptor - handles response formatting and errors
+instance.interceptors.response.use(
+  (response) => {
+    // Log successful responses in development
+    if (process.env.NODE_ENV === 'development') {
+      console.log(`✅ API Response: ${response.config.url}`, response.status);
+    }
+    return response;
+  },
+  (error) => {
+    // Handle authentication errors (401 Unauthorized or 403 Forbidden)
+    if (error.response?.status === 401 || error.response?.status === 403) {
+      console.warn(`🔒 Authentication failed (${error.response.status}): ${error.response?.data?.message}`);
+      
+      // Get the error message
+      const errorMsg = error.response?.data?.message || '';
+      
+      // Check for token-related issues
+      const isTokenIssue = 
+        errorMsg.includes('token') || 
+        errorMsg.includes('Token') ||
+        errorMsg.includes('Invalid') ||
+        errorMsg.includes('expired') ||
+        errorMsg.includes('Access denied');
+      
+      if (isTokenIssue) {
+        console.warn('Clearing token due to authentication issue');
+        localStorage.removeItem('token');
+        
+        // Redirect to login only if we're not already there and not trying to login
+        const isLoginRequest = error.config.url.includes('/auth/login');
+        if (window.location.pathname !== '/login' && !isLoginRequest) {
+          console.log('Redirecting to login page...');
+          window.location.href = '/login';
+        }
+      }
+    }
+    
+    // Handle server errors
+    if (error.response?.status >= 500) {
+      console.error('🔥 Server Error:', error.response?.data?.message || 'Unknown server error');
+    }
+    
+    // Log all response errors in development
+    if (process.env.NODE_ENV === 'development') {
+      console.error(
+        `❌ API Error: ${error.config?.method?.toUpperCase()} ${error.config?.url}`,
+        error.response?.status,
+        error.response?.data
+      );
+    }
+    
+    return Promise.reject(error);
+  }
+);
+
+export default instance;
